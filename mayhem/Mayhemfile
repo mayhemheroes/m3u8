@@ -1,0 +1,9 @@
+project: m3u8
+target: load-fuzz
+testsuite:
+    - file://mayhem/testsuite
+
+cmds:
+  - cmd: /src/mayhem/fuzz_load.py
+    libfuzzer: true
+    timeout: 12
