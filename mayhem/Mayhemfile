@@ -1,0 +1,14 @@
+# Mayhem target: m3u8 HLS playlist parser (Atheris/libFuzzer harness).
+# The cmd binary is the compiled ELF launcher that drives mayhem/fuzz_load.py; Atheris
+# instruments the m3u8 library so the run records coverage (edges).
+project: m3u8
+target: load-fuzz
+
+cmds:
+  - cmd: /mayhem/m3u8_fuzzer
+    libfuzzer: true
+
+# Seed corpus of representative HLS playlists (file:// URIs, per the Mayhemfile schema).
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/load-fuzz/testsuite
